@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{%block title%}{{blog.title}}{%endblock%}
+
+{%block extra_css%}<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">{% endblock %}
+
+{%block content%}
+
+<h1>Posts</h1>
+<div class="container">
+{%for post in posts%}
+   <div class="blogcard">
+    <h1>{{post.title}}</h1>
+    <h2>{{post.content | truncatechars:20}}</h2>
+       <a href="{% url 'read_post' post.id %}">Read Post</a>
+       <small>Published at: {{post.published_at}}</small>
+       <br>
+       {% if blog.created_by == request.user %}
+       <a href="{%url 'edit_post' post.id%}">Edit Post</a>
+       <br>
+       <a href="{% url 'delete_post' post.id %}">Delete Post</a>
+       {%endif%}
+    </div>
+{%endfor%}
+    </div>
+
+
+{% if blog.created_by == request.user %}
+<a href="{% url 'create_post' blog.id %}"> Create New Post</a>
+{% endif %}
+<a href="{% url 'dashboard'%}">Back to dashboard</a>
+
+{%endblock%}

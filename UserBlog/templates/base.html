@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{%block title%}{%endblock%}</title>
+    <style>
+    *{
+    margin:0;
+    padding:0;
+    }
+
+
+    body{
+    background-color: #373837;
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    }
+
+    ul{
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width:17rem;
+    background-color: #1b1c1b;
+    color:white;
+    display:flex;
+    flex-direction:column;
+    }
+
+    .headingtext{
+    line-height: 6em ;
+    padding-left: 40px;
+    font-size: 1.5rem;
+    }
+
+    ul div li a{
+    text-decoration: none;
+    color: white;
+    }
+
+    ul li{
+    list-style:none;
+    font-size: 27px;
+    }
+
+    ul li a:hover{
+    color: #8b8f8b;
+    }
+
+    .list{
+    padding-top: 40px;
+    padding-left: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    }
+
+    hr{
+    width: 100%;
+    height: 2px;
+    border:none;
+    color: #373837;
+    background-color: #373837;
+    }
+
+    .listel{
+    margin-top:auto;
+    justify-content:center;
+    align-items:center;
+    background-color: #ebf0eb;
+    margin-left: 20px;
+    margin-bottom:30px;
+    width: 12rem;
+    height: 2rem;
+    display:flex;
+    padding:15px;
+    border-radius:10px;
+    font-size: 24px;
+    }
+
+  main {
+    margin-left: 17rem; /* Push main content to the right */
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    height: 100vh; /* Full height */
+}
+
+    .listel a{
+    text-decoration:none;
+    color:  #373837 ;
+    }
+
+</style>
+
+    {% block extra_css %}{% endblock %}
+</head>
+
+
+
+<body>
+<ul>
+    <div class="headingtext">
+        <h1>Hello👋</h1>
+    </div>
+    <hr>
+    <div class="list">
+    <li><a href="{%url 'dashboard'%}">Home</a></li>
+     <li><a href="{% url 'myblogs' %}">My Blogs</a></li>
+    </div>
+
+
+    <li class="listel"><a href="{%url 'create_blog'%}">Create Blog</a></li>
+    <li class="listel"><a href="{% url 'signout'%}">Sign Out</a></li>
+
+</ul>
+
+    <main>{%block content%}
+        {%endblock%}</main>
+</body>
+</html>
